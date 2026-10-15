@@ -19,8 +19,11 @@
   <img src="https://img.shields.io/badge/Redis-Queue-DC382D?style=flat-square&logo=redis&logoColor=white" alt="Redis" />
   <img src="https://img.shields.io/badge/FastAPI-Python-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI" />
   <img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker" />
-  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="MIT License" />
+  <img src="https://img.shields.io/badge/License-Proprietary%20%2F%20All%20Rights%20Reserved-red?style=flat-square" alt="Proprietary License" />
 </p>
+
+> [!IMPORTANT]
+> **Proprietary Notice & Terms of Access:** This project is published strictly for demonstration, evaluation, and review purposes. All rights are reserved by Rupom Hossain. Any unauthorized reproduction, downloading, cloning, distribution, or reuse of this code or its architecture is strictly prohibited by law. See [LICENSE](LICENSE) for details.
 
 ---
 
@@ -767,13 +770,13 @@ Git Push → Linting → Testing → Docker Build → Deployment
 
 ---
 
-## 📄 License
+## 📄 License & Intellectual Property
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is proprietary software — see the [LICENSE](LICENSE) file for complete terms.
 
 ```
-MIT License © 2026 CSE4204-8C-T07 — Humanova Team
-Northern University of Business and Technology Khulna
+Proprietary & Confidential © 2026 Rupom Hossain (rupom787). All Rights Reserved.
+Viewing permitted for evaluation and portfolio review only. Reproduction or distribution strictly prohibited.
 ```
 
 ---

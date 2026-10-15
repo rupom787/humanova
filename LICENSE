@@ -1,22 +1,30 @@
-MIT License
+PROPRIETARY AND CONFIDENTIAL
+COPYRIGHT (C) 2026 RUPOM HOSSAIN (rupom787). ALL RIGHTS RESERVED.
 
-Copyright (c) 2026 CSE4204-8C-T07 — Humanova Team
-Northern University of Business and Technology Khulna
+This software, source code, design systems, assets, documentation, and all related materials
+("Software") are the confidential and proprietary property of Rupom Hossain.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+TERMS AND CONDITIONS FOR EVALUATION / VIEWING:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. Permitted Use:
+   Access to view this repository is granted strictly and exclusively for personal evaluation,
+   academic review, portfolio demonstration, and recruitment inspection purposes.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. Prohibited Acts:
+   Under no circumstances is any user, automated scraper, entity, or third party authorized to:
+   - Download, clone, scrape, or archive the Software for distribution or reuse.
+   - Copy, duplicate, reproduce, reverse engineer, decompile, or disassemble any portion of the Software.
+   - Modify, adapt, alter, create derivative works from, or redistribute the Software in whole or in part.
+   - Sublicense, rent, lease, sell, or exploit the Software for any commercial or non-commercial purpose.
+   - Use any portion of this code, dataset, or architecture to train artificial intelligence models or machine learning systems without explicit prior written authorization.
+
+3. Ownership:
+   All intellectual property rights, trademarks, copyrights, and trade secrets in and to this Software
+   remain the sole and exclusive property of Rupom Hossain.
+
+4. Enforcement:
+   Any unauthorized copying, distribution, reproduction, or use constitutes an infringement of copyright
+   and intellectual property laws, and will be subject to immediate legal action and DMCA takedown notices.
+
+NO WARRANTY:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
