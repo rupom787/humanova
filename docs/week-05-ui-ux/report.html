@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>CSE4204-8C-T07 UIDesign</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
+            
+            body {
+                font-family: 'Inter', sans-serif;
+                color: #0f172a;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #ffffff;
+            }
+            
+            .page {
+                width: 8.5in;
+                min-height: 11in;
+                padding: 0.75in;
+                box-sizing: border-box;
+                margin: 0 auto;
+                background: white;
+            }
+            
+            .cover-page {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 9.5in;
+            }
+            
+            .title-large {
+                font-family: 'Space Grotesk', sans-serif;
+                font-size: 32px;
+                font-weight: 700;
+                color: #0f172a;
+                margin-top: 30px;
+                margin-bottom: 5px;
+            }
+            
+            .subtitle-large {
+                font-family: 'Space Grotesk', sans-serif;
+                font-size: 18px;
+                font-weight: 700;
+                color: #475569;
+                margin-bottom: 30px;
+            }
+            
+            h1, h2, h3 {
+                font-family: 'Space Grotesk', sans-serif;
+                color: #0f172a;
+            }
+            
+            h1 {
+                font-size: 22px;
+                border-bottom: 2px solid #0f172a;
+                padding-bottom: 6px;
+                margin-top: 30px;
+                margin-bottom: 12px;
+            }
+            
+            h2 {
+                font-size: 16px;
+                margin-top: 20px;
+                color: #0284c7;
+            }
+            
+            h3 {
+                font-size: 14px;
+                margin-top: 15px;
+                color: #334155;
+            }
+            
+            p {
+                font-size: 13px;
+                color: #334155;
+                text-align: justify;
+                margin-bottom: 8px;
+            }
+            
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 15px 0;
+                font-size: 11.5px;
+            }
+            
+            th, td {
+                border: 1px solid #cbd5e1;
+                padding: 8px;
+                text-align: left;
+            }
+            
+            th {
+                background-color: #0f172a;
+                color: #ffffff;
+                font-weight: 600;
+            }
+            
+            tr:nth-child(even) {
+                background-color: #f8fafc;
+            }
+            
+            .meta-box {
+                background-color: #f8fafc;
+                border-left: 4px solid #0284c7;
+                padding: 8px 12px;
+                margin: 10px 0;
+                border-radius: 0 6px 6px 0;
+            }
+            
+            .meta-box p {
+                margin: 3px 0;
+                font-size: 11.5px;
+            }
+            
+            .screenshot-container {
+                text-align: center;
+                margin: 15px 0;
+            }
+            
+            .caption {
+                font-size: 10.5px;
+                font-style: italic;
+                color: #64748b;
+                margin-top: 4px;
+            }
+            
+            .bullet-list {
+                font-size: 13px;
+                padding-left: 20px;
+                color: #334155;
+            }
+            
+            .bullet-list li {
+                margin-bottom: 4px;
+            }
+            
+            @media print {
+                .page-break {
+                    page-break-before: always;
+                }
+                body {
+                    background-color: #ffffff;
+                }
+                .page {
+                    width: 100%;
+                    min-height: auto;
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <!-- Cover Page -->
+            <div class="cover-page">
+                <div style="font-size: 14px; font-weight: 700; color: #64748b; letter-spacing: 2px; text-transform: uppercase;">Lab Project Submission</div>
+                <div class="title-large">Humanova</div>
+                <div class="subtitle-large">AI Hallucination Detection & Verification System</div>
+                
+                <div style="margin-top: 20px; width: 100%;">
+                    <h3 style="text-align: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px;">Course Information</h3>
+                    <table>
+                        <tr>
+                            <td style="font-weight: 700; width: 30%;">Course Code</td>
+                            <td>CSE 4204</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700;">Course Title</td>
+                            <td>Mobile Computing Lab</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700;">Section</td>
+                            <td>8C</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700;">Team ID</td>
+                            <td>T07</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700;">Project Type</td>
+                            <td>AI Hallucination Detection & Verification System</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div style="margin-top: 20px; width: 100%;">
+                    <h3 style="text-align: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px;">Submitted By</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Student ID</th>
+                                <th>System Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MD Robayet Hassan Rupom</td>
+                                <td>11220320979</td>
+                                <td>Frontend Developer & Team Leader</td>
+                            </tr>
+                            <tr>
+                                <td>Bushra Monzur Moumi</td>
+                                <td>11220321048</td>
+                                <td>AI Integration Lead</td>
+                            </tr>
+                            <tr>
+                                <td>Aqib Jawwad Nahin</td>
+                                <td>11220320969</td>
+                                <td>Backend Developer & Database Manager</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="margin-top: 25px;">
+                    <h3 style="border-bottom: 1px solid #e2e8f0; padding-bottom: 4px;">Submitted To</h3>
+                    <p style="text-align: center; font-weight: 600; font-size: 13px; line-height: 1.5;">
+                        Md. Riaz Mahmud<br>
+                        Assistant Professor<br>
+                        Department of Computer Science and Engineering<br>
+                        Northern University of Business and Technology Khulna
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Section 1 -->
+            <div class="page-break">
+                <h1>1. Project Information</h1>
+                <h3>Project Overview</h3>
+                <p>
+                    Humanova is an AI-powered verification platform designed to identify hallucinations in AI-generated content through claim extraction, citation validation, broken-link detection, confidence scoring, and community verification. The platform provides transparency and trustworthiness for AI-generated responses used in academic, professional, and research environments.
+                </p>
+                <p>
+                    Generative artificial intelligence has introduced unprecedented efficiencies in content generation, but LLMs suffer from a critical flaw: they routinely generate fabricated citations, broken URL endpoints, and contradictory facts, presenting them with persuasive confidence. Humanova serves as the trust governance layer between the user and raw AI outputs. Submitting a prompt or pasting text into Humanova triggers a series of semantic pipelines. These parse the text, extract individual fact claims, cross-check credentials and URLs against live web sources, measure citation reliability, and output an explainable percentage score alongside highlighted overlays mapping verified and suspicious content.
+                </p>
+            </div>
+            
+            <!-- Section 2 UI screens -->
+            
+        <div class="page-break">
+            <h2>2.1 Landing Page</h2>
+            <div class="meta-box">
+                <p><strong>Purpose:</strong> Introduce Humanova, present the platform value proposition, and encourage users to log in or register to begin verification.</p>
+                <p><strong>Components:</strong> Hero Section, Call To Action, Features Section, Statistics Section, Footer</p>
+                <p><strong>UX Description:</strong> The home landing page features an immersive, futuristic hero canvas with a custom grid particle grid. The typography utilizes prominent space letters, bold callouts, and clear CTA actions ('Get Started' button). It highlights key metrics such as audited scans, hallucination detection rates, and active providers.</p>
+            </div>
+            <div class="screenshot-container">
+                <img src="ui-screens/landing-page.png" alt="2.1 Landing Page" style="max-width: 100%; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px;" />
+                <p class="caption">Figure: 2.1 Landing Page Interface Screen Mockup</p>
+            </div>
+        </div>
+        
+        <div class="page-break">
+            <h2>2.2 Login Page</h2>
+            <div class="meta-box">
+                <p><strong>Purpose:</strong> Authenticate users to allow them access to their secure dashboard environments.</p>
+                <p><strong>Components:</strong> Email, Password, Remember Me, Login Button, Google Login, GitHub Login</p>
+                <p><strong>UX Description:</strong> A focused login form rendered inside a floating translucent card. It includes modern inputs with custom state indicators, active error messages, and credentials storage options. Direct OAuth integration portals (Google and GitHub) are displayed prominently.</p>
+            </div>
+            <div class="screenshot-container">
+                <img src="ui-screens/login-page.png" alt="2.2 Login Page" style="max-width: 100%; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px;" />
+                <p class="caption">Figure: 2.2 Login Page Interface Screen Mockup</p>
+            </div>
+        </div>
+        
+        <div class="page-break">
+            <h2>2.3 Registration Page</h2>
+            <div class="meta-box">
+                <p><strong>Purpose:</strong> Create verified user accounts to track individual scan histories and join organizations.</p>
+                <p><strong>Components:</strong> Full Name, Email, Password, Confirm Password, Register Button</p>
+                <p><strong>UX Description:</strong> A twin register layout that validates inputs in real-time (such as password strength and email formatting). Users can input their details and immediately configure their first organizational workspace.</p>
+            </div>
+            <div class="screenshot-container">
+                <img src="ui-screens/register-page.png" alt="2.3 Registration Page" style="max-width: 100%; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px;" />
+                <p class="caption">Figure: 2.3 Registration Page Interface Screen Mockup</p>
+            </div>
+        </div>
+        
+        <div class="page-break">
+            <h2>2.4 Dashboard</h2>
+            <div class="meta-box">
+                <p><strong>Purpose:</strong> Provide a unified operational cockpit for users to review overall scan summaries and activity logs.</p>
+                <p><strong>Components:</strong> Verification Summary, Recent Verifications, Confidence Trends, Activity Feed</p>
+                <p><strong>UX Description:</strong> The user dashboard features high-level analytics counters (Total Scans, Hallucination Rate, Token Savings, Provider Reliability), responsive trend line charts showing daily scan confidence ratings, and a tabular log of recent verification processes.</p>
+            </div>
+            <div class="screenshot-container">
+                <img src="ui-screens/dashboard.png" alt="2.4 Dashboard" style="max-width: 100%; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px;" />
+                <p class="caption">Figure: 2.4 Dashboard Interface Screen Mockup</p>
+            </div>
+        </div>
+        
+        <div class="page-break">
+            <h2>2.5 Verification Page</h2>
+            <div class="meta-box">
+                <p><strong>Purpose:</strong> A central input workspace where users paste text or type prompts to execute hallucination scans.</p>
+                <p><strong>Components:</strong> AI Response Input, Citation Verification, URL Validation, Verification Button</p>
+                <p><strong>UX Description:</strong> The verification workspace displays a large text area with real-time character count and token estimations, options to select AI providers (OpenAI, Gemini, DeepSeek), prompt enhancement mode controls, and a prominent 'Execute Verification' trigger.</p>
+            </div>
+            <div class="screenshot-container">
+                <img src="ui-screens/verification-page.png" alt="2.5 Verification Page" style="max-width: 100%; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px;" />
+                <p class="caption">Figure: 2.5 Verification Page Interface Screen Mockup</p>
+            </div>
+        </div>
+        
+        <div class="page-break">
+            <h2>2.6 Verification Result Page</h2>
+            <div class="meta-box">
+                <p><strong>Purpose:</strong> Display comprehensive audit outputs, claim extractions, contradiction penalties, and download portals.</p>
+                <p><strong>Components:</strong> Confidence Score, Citation Status, Broken Links, Hallucination Findings, Export Report</p>
+                <p><strong>UX Description:</strong> The result interface features an explainable confidence meter. A dual-pane selector toggles between showing raw text highlighted by claim severity (Verified: Green, Suspicious: Amber, Hallucination: Red) and the complete directory of claims. The sidebar provides citation link checks and SSL status tables.</p>
+            </div>
+            <div class="screenshot-container">
+                <img src="ui-screens/report-page.png" alt="2.6 Verification Result Page" style="max-width: 100%; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px;" />
+                <p class="caption">Figure: 2.6 Verification Result Page Interface Screen Mockup</p>
+            </div>
+        </div>
+        
+        <div class="page-break">
+            <h2>2.7 User Profile Page</h2>
+            <div class="meta-box">
+                <p><strong>Purpose:</strong> Allow users to update personal parameters, rotate auth configurations, and manage settings.</p>
+                <p><strong>Components:</strong> Profile Information, Security Settings, API Keys, Organization Membership</p>
+                <p><strong>UX Description:</strong> Provides form inputs to configure full name, upload user avatars, manage session passwords, and switch active workspaces.</p>
+            </div>
+            <div class="screenshot-container">
+                <img src="ui-screens/profile-page.png" alt="2.7 User Profile Page" style="max-width: 100%; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px;" />
+                <p class="caption">Figure: 2.7 User Profile Page Interface Screen Mockup</p>
+            </div>
+        </div>
+        
+        <div class="page-break">
+            <h2>2.8 Organization Management Page</h2>
+            <div class="meta-box">
+                <p><strong>Purpose:</strong> Enable team owners to register workspaces, assign hierarchical permissions, and dispatch invites.</p>
+                <p><strong>Components:</strong> Organization Details, Members, Roles, Invitations</p>
+                <p><strong>UX Description:</strong> A detailed tabular layout showing active members, system roles (Admin, Verifier, Auditor, Viewer), joining dates, and a modal trigger to invite new verifiers using secure emails.</p>
+            </div>
+            <div class="screenshot-container">
+                <img src="ui-screens/organization-page.png" alt="2.8 Organization Management Page" style="max-width: 100%; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px;" />
+                <p class="caption">Figure: 2.8 Organization Management Page Interface Screen Mockup</p>
+            </div>
+        </div>
+        
+        <div class="page-break">
+            <h2>2.9 API Key Management Page</h2>
+            <div class="meta-box">
+                <p><strong>Purpose:</strong> Allows organizations to manage credentials for various AI providers safely.</p>
+                <p><strong>Components:</strong> Add API Key, Update API Key, Delete API Key</p>
+                <p><strong>UX Description:</strong> Displays provider cards (OpenAI, Gemini, DeepSeek) with masked API keys. Users can input new keys, run verification validation tests, and monitor key last-used timestamps.</p>
+            </div>
+            <div class="screenshot-container">
+                <img src="ui-screens/api-key-page.png" alt="2.9 API Key Management Page" style="max-width: 100%; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px;" />
+                <p class="caption">Figure: 2.9 API Key Management Page Interface Screen Mockup</p>
+            </div>
+        </div>
+        
+        <div class="page-break">
+            <h2>2.10 Admin Dashboard</h2>
+            <div class="meta-box">
+                <p><strong>Purpose:</strong> Admin level panel for system health monitoring, audit logs ledger review, and service latency analytics.</p>
+                <p><strong>Components:</strong> User Management, Organization Monitoring, Verification Analytics, Security Logs</p>
+                <p><strong>UX Description:</strong> Displays complex security intelligence graphs including monthly hallucination rates, incident vector breakdowns, engine latency charts, and activity logs detailing IP addresses and security actions.</p>
+            </div>
+            <div class="screenshot-container">
+                <img src="ui-screens/admin-dashboard.png" alt="2.10 Admin Dashboard" style="max-width: 100%; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 8px;" />
+                <p class="caption">Figure: 2.10 Admin Dashboard Interface Screen Mockup</p>
+            </div>
+        </div>
+        
+            
+            <!-- Section 3 User flow -->
+            <div class="page-break">
+                <h1>3. User Flow Design</h1>
+                <h3>User Flow Description</h3>
+                <p>
+                    The system journey flow charts out how information travels from registration up to report generation:
+                </p>
+                <ul class="bullet-list">
+                    <li><strong>Registration:</strong> New users sign up, execute email verification routing, and register active workspaces.</li>
+                    <li><strong>Login:</strong> Registered users authenticate credentials and enter their multi-tenant user dashboard.</li>
+                    <li><strong>Submit Prompt:</strong> Users inputs a prompt or pastes raw AI responses to start verification.</li>
+                    <li><strong>Claim Extraction:</strong> AI claim engines parse the text and separate it into atomic fact claims.</li>
+                    <li><strong>Link Inspector:</strong> The system validates url SSL certificates, HTTP response codes, and domain trust scores.</li>
+                    <li><strong>Confidence Score:</strong> Calculates weighted values for semantic similarity, source authority, and contradiction penalties.</li>
+                    <li><strong>Verification Report:</strong> Compiles highlighted claims, link tables, and trust scores.</li>
+                    <li><strong>Export PDF:</strong> Allows users to download fully-certified PDF receipts.</li>
+                </ul>
+                
+                <h3>User Flow Diagram</h3>
+                <div class="screenshot-container">
+                    <img src="diagrams/user-flow.png" alt="User Flow Diagram" style="max-width: 80%; border: 1px solid #e2e8f0; border-radius: 8px;" />
+                    <p class="caption">Figure: Humanova Operational User Journey Flowchart</p>
+                </div>
+            </div>
+            
+            <!-- Section 4 Roadmap -->
+            <div class="page-break">
+                <h1>4. Development Roadmap</h1>
+                <h3>Development Schedule Overview</h3>
+                <p>
+                    The project schedule tracks key stages starting from frontend UI compilation up to final launch:
+                </p>
+                <ul class="bullet-list">
+                    <li><strong>Week 06 — Frontend UI:</strong> UI development completed using React, TypeScript, and Tailwind (Assigned: Robayet).</li>
+                    <li><strong>Week 07 — Backend Integration:</strong> Database schemas setup, Sanctum auth controllers, and endpoints routing (Assigned: Aqib).</li>
+                    <li><strong>Week 08 — AI Integration:</strong> Orchestrating APIs, API keys encrypted vaulting, and prompt routing (Assigned: Bushra).</li>
+                    <li><strong>Week 09 — Verification Engine:</strong> Claiming parsing, citations matching logic, and scoring math (Assigned: Bushra & Aqib).</li>
+                    <li><strong>Week 10 — Feature Completion:</strong> Core frontend panels bound to API endpoints (Assigned: Entire Team).</li>
+                    <li><strong>Week 11 — Testing & Debugging:</strong> QA test runs, latency profiling, and manual auditing loops (Assigned: Entire Team).</li>
+                    <li><strong>Week 12 — Deployment & Review:</strong> Deploying VPS backend containers, hosting Vercel build, and compiling final document reports (Assigned: Entire Team).</li>
+                </ul>
+                
+                <h3>Gantt Development Roadmap</h3>
+                <div class="screenshot-container">
+                    <img src="diagrams/development-roadmap.png" alt="Development Roadmap" style="max-width: 85%; border: 1px solid #e2e8f0; border-radius: 8px;" />
+                    <p class="caption">Figure: Humanova Development Roadmap Gantt Diagram</p>
+                </div>
+            </div>
+            
+            <!-- Section 5 Task distribution -->
+            <div class="page-break">
+                <h1>5. Team Task Distribution</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Team Member</th>
+                            <th>Core Responsibilities & Deliverables</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>MD Robayet Hassan Rupom</strong><br>(Frontend & Team Leader)</td>
+                            <td>Frontend UI/UX architecture, responsive React screen development, custom component token systems, route configurations, user documentation, and overall team management.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bushra Monzur Moumi</strong><br>(AI Integration Lead)</td>
+                            <td>AI service integration, claim extraction models orchestration, fallback routing logic, prompt templates engineering, and scoring engines configurations.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aqib Jawwad Nahin</strong><br>(Backend Developer)</td>
+                            <td>Backend Laravel API development, MySQL schemas creation, Sanctum token authentication, tenant isolation middleware, Docker compose setups, and security audit logs.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Section 6 Tech Stack -->
+            <div class="page-break">
+                <h1>6. Final Technology Stack</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Architecture Layer</th>
+                            <th>Technologies Used & Scope</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Frontend</strong></td>
+                            <td>React 19, TypeScript, Tailwind CSS, ShadCN UI primitives, TanStack Query, Zustand.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Backend</strong></td>
+                            <td>Laravel 12, Laravel Sanctum token auth, Redis queue workers (Horizon orchestration).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Database</strong></td>
+                            <td>MySQL 8, transaction registries, indexing logs, prepared queries.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI Providers</strong></td>
+                            <td>OpenAI APIs (GPT-4o), Google Gemini (Gemini 1.5 Pro), DeepSeek V3, Anthropic (Claude 3.5 Sonnet), Groq, OpenRouter.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DevOps & CI/CD</strong></td>
+                            <td>Docker compose environment profiles, GitHub actions workflow audits, ESLint code checker.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deployment</strong></td>
+                            <td>Vercel client hosting, Railway/VPS backend container hosting, Managed MySQL database servers.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Section 7 GitHub Progress -->
+            <div class="page-break">
+                <h1>7. GitHub Progress</h1>
+                <p>The repository reflects active checks indicating completed structural layers:</p>
+                <ul class="bullet-list">
+                    <li><strong>✅ Project Planning Completed:</strong> Requirements specification and visual guidelines finalized.</li>
+                    <li><strong>✅ Architecture Completed:</strong> Detailed blueprints for verification, DB, and multi-tenant services.</li>
+                    <li><strong>✅ System Design Completed:</strong> Front and back directories structures and router mappings set up.</li>
+                    <li><strong>✅ Database Design Completed:</strong> DB migrations files, relationships schemas, and seeders completed.</li>
+                    <li><strong>✅ Backend Development Completed:</strong> Active API endpoints, Laravel controller classes, and test directories pushed.</li>
+                    <li><strong>✅ UI/UX Planning Completed:</strong> High-fidelity React components developed and design tokens integrated.</li>
+                    <li><strong>⏳ AI Integration Pending:</strong> Connection and claiming algorithms are currently in implementation.</li>
+                    <li><strong>⏳ Final Testing Pending:</strong> Full system integration test loop is scheduled for Week 11.</li>
+                    <li><strong>⏳ Deployment Pending:</strong> Final build deployments and domain mappings scheduled for Week 12.</li>
+                </ul>
+            </div>
+            
+            <!-- Section 8 Conclusion -->
+            <div class="page-break">
+                <h1>8. Conclusion</h1>
+                <p>
+                    The UI/UX design for Humanova provides a user-friendly and scalable interface for AI hallucination detection and verification. The proposed user flows, screen designs, development roadmap, and team responsibilities establish a clear implementation strategy for the remaining development phases. The design aligns with the SRS, PRD, System Architecture, and Database Design documents and will serve as the primary reference during project implementation and evaluation.
+                </p>
+                <p>
+                    By implementing structured React widgets and a dark-first component system, the platform reduces user cognitive load while conveying complex trust analytics. The next phase will bind these visual structures to the Laravel database API and Python AI models to deliver a fully operational trust verification ecosystem.
+                </p>
+            </div>
+        </div>
+    </body>
+    </html>
+    

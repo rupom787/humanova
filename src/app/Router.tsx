@@ -29,8 +29,8 @@ export const Router: React.FC = () => {
         <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/dashboard" />} />
 
         {/* Protected App Routes */}
-        <Route 
-          path="/*" 
+        <Route
+          path="/*"
           element={
             isAuthenticated ? (
               <AppShell>
@@ -49,7 +49,7 @@ export const Router: React.FC = () => {
             ) : (
               <Navigate to="/login" replace />
             )
-          } 
+          }
         />
       </Routes>
     </BrowserRouter>

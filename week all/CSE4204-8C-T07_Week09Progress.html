@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSE4204-8C-T07_Week09Progress - Humanova Integration & Mid-Project Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --primary-light: #e0f2fe;
+            --secondary: #0f172a;
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-400: #94a3b8;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --success: #10b981;
+            --success-bg: #ecfdf5;
+            --warning: #f59e0b;
+            --warning-bg: #fffbeb;
+            --danger: #ef4444;
+            --danger-bg: #fef2f2;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--slate-700);
+            background-color: #f8fafc;
+            line-height: 1.65;
+            font-size: 13.5px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .document-wrapper {
+            max-width: 8.5in;
+            margin: 30px auto;
+            background: #ffffff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+        }
+
+        .page {
+            padding: 0.75in 0.85in;
+            min-height: 11in;
+            position: relative;
+            background: #ffffff;
+        }
+
+        /* Top Action Bar for easy printing */
+        .action-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #0f172a;
+            color: #ffffff;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .action-btn {
+            background: #0284c7;
+            color: #ffffff;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .action-btn:hover {
+            background: #0369a1;
+        }
+
+        /* Cover Page Styling */
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 9.5in;
+            text-align: center;
+            padding: 40px 10px;
+        }
+
+        .cover-header {
+            border-bottom: 2px solid var(--slate-200);
+            padding-bottom: 25px;
+        }
+
+        .institution-title {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--slate-900);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .dept-title {
+            font-size: 13px;
+            color: var(--slate-600);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .course-badge {
+            display: inline-block;
+            background: var(--slate-900);
+            color: #ffffff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
+
+        .report-main-title {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--slate-900);
+            line-height: 1.25;
+            margin-top: 20px;
+        }
+
+        .report-subtitle {
+            font-family: var(--font-display);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 8px;
+        }
+
+        .project-tag {
+            margin-top: 25px;
+            background: var(--slate-50);
+            border: 1px solid var(--slate-200);
+            padding: 16px;
+            border-radius: 8px;
+            display: inline-block;
+            max-width: 550px;
+        }
+
+        .project-tag-title {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--slate-900);
+        }
+
+        .project-tag-desc {
+            font-size: 12px;
+            color: var(--slate-600);
+            margin-top: 4px;
+        }
+
+        .meta-tables-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 35px;
+            text-align: left;
+        }
+
+        .meta-section-title {
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--slate-900);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1.5px solid var(--primary);
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+        }
+
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        .meta-table th, .meta-table td {
+            border: 1px solid var(--slate-200);
+            padding: 7px 10px;
+        }
+
+        .meta-table th {
+            background-color: var(--slate-100);
+            color: var(--slate-800);
+            font-weight: 600;
+        }
+
+        .meta-table td:first-child {
+            font-weight: 600;
+            color: var(--slate-800);
+            width: 35%;
+        }
+
+        /* General Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            color: var(--slate-900);
+            line-height: 1.3;
+        }
+
+        h1 {
+            font-size: 19px;
+            border-bottom: 2px solid var(--slate-900);
+            padding-bottom: 6px;
+            margin-top: 30px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h1::before {
+            content: "";
+            display: inline-block;
+            width: 5px;
+            height: 18px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        h2 {
+            font-size: 15px;
+            color: var(--primary-dark);
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 13.5px;
+            color: var(--slate-800);
+            margin-top: 14px;
+            margin-bottom: 6px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        /* Tables */
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 18px 0;
+            font-size: 11.5px;
+        }
+
+        table.data-table th, table.data-table td {
+            border: 1px solid var(--slate-200);
+            padding: 7px 9px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        table.data-table th {
+            background-color: var(--slate-900);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 11.5px;
+            letter-spacing: 0.3px;
+        }
+
+        table.data-table tr:nth-child(even) {
+            background-color: var(--slate-50);
+        }
+
+        table.data-table tr:hover {
+            background-color: #f0fdf4;
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-block;
+            padding: 2px 7px;
+            border-radius: 12px;
+            font-size: 10.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        .badge-completed {
+            background-color: var(--success-bg);
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .badge-progress {
+            background-color: var(--warning-bg);
+            color: #92400e;
+            border: 1px solid #fde68a;
+        }
+
+        .badge-notstarted {
+            background-color: var(--slate-100);
+            color: var(--slate-600);
+            border: 1px solid var(--slate-300);
+        }
+
+        .badge-danger {
+            background-color: var(--danger-bg);
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        /* Callout Boxes */
+        .callout {
+            background-color: var(--slate-50);
+            border-left: 4px solid var(--primary);
+            padding: 10px 14px;
+            margin: 14px 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 12.5px;
+        }
+
+        .callout.warning {
+            background-color: var(--warning-bg);
+            border-left-color: var(--warning);
+            color: #78350f;
+        }
+
+        .callout.important {
+            background-color: #eff6ff;
+            border-left-color: #3b82f6;
+            color: #1e3a8a;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Code and Pre */
+        pre {
+            background-color: var(--slate-900);
+            color: #e2e8f0;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            line-height: 1.45;
+            overflow-x: auto;
+            margin: 12px 0;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            font-size: 11.5px;
+            background-color: var(--slate-100);
+            color: var(--primary-dark);
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        /* Screenshot Container */
+        .screenshot-card {
+            background: #ffffff;
+            border: 1px solid var(--slate-200);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 18px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            page-break-inside: avoid;
+        }
+
+        .screenshot-img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid var(--slate-200);
+            display: block;
+        }
+
+        .screenshot-caption {
+            font-size: 11.5px;
+            color: var(--slate-600);
+            margin-top: 8px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .screenshot-meta {
+            background: var(--slate-50);
+            border-top: 1px solid var(--slate-200);
+            padding: 8px 10px;
+            margin-top: 8px;
+            border-radius: 4px;
+            font-size: 11.5px;
+        }
+
+        /* Workflow Diagrams */
+        .diagram-box {
+            background: var(--slate-900);
+            color: #38bdf8;
+            padding: 14px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            line-height: 1.35;
+            margin: 14px 0;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        /* Lists */
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        /* Print Settings */
+        @media print {
+            .action-bar {
+                display: none;
+            }
+            body {
+                background: #ffffff;
+                font-size: 12px;
+            }
+            .document-wrapper {
+                margin: 0;
+                box-shadow: none;
+                max-width: 100%;
+            }
+            .page {
+                padding: 0.5in 0.6in;
+                min-height: auto;
+                page-break-after: always;
+            }
+            .page:last-child {
+                page-break-after: avoid;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+            .screenshot-card {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Printable Header Bar -->
+    <div class="action-bar">
+        <div>
+            <strong>Humanova Mid-Project Review</strong> | Week 09 Progress and Integration Report
+        </div>
+        <button class="action-btn" onclick="window.print()">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/></svg>
+            Print / Save to PDF
+        </button>
+    </div>
+
+    <div class="document-wrapper">
+
+        <!-- ================= PAGE 1: FORMAL COVER PAGE ================= -->
+        <div class="page">
+            <div class="cover-page">
+                <div class="cover-header">
+                    <div class="institution-title">Northern University of Business and Technology Khulna</div>
+                    <div class="dept-title">Department of Computer Science and Engineering</div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <div class="course-badge">CSE 4204: Mobile Computing Lab</div>
+                    <div class="report-main-title">Week 09 Progress and Integration Report</div>
+                    <div class="report-subtitle">Feature Completion, System Integration & Mid-Project Review</div>
+
+                    <div class="project-tag">
+                        <div class="project-tag-title">🛡️ Humanova</div>
+                        <div class="project-tag-desc">Enterprise AI Trust Governance & Multi-Tenant Verification Platform</div>
+                    </div>
+                </div>
+
+                <div class="meta-tables-grid">
+                    <div>
+                        <div class="meta-section-title">Submitted By: Team 07 (Section 8C)</div>
+                        <table class="meta-table">
+                            <thead>
+                                <tr>
+                                    <th>Student Name</th>
+                                    <th>Student ID</th>
+                                    <th>Project Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>MD Robayet Hassan Rupom</strong></td>
+                                    <td><code>11220320979</code></td>
+                                    <td>Frontend Architect & Team Leader</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Bushra Monzur Moumi</strong></td>
+                                    <td><code>11220321048</code></td>
+                                    <td>AI Integration & NLP Pipeline Lead</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Aqib Jawwad Nahin</strong></td>
+                                    <td><code>11220320969</code></td>
+                                    <td>Backend Architect & Database Manager</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div>
+                        <div class="meta-section-title">Submitted To</div>
+                        <table class="meta-table">
+                            <tr>
+                                <td>Course Instructor</td>
+                                <td><strong>Md. Riaz Mahmud</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Designation</td>
+                                <td>Assistant Professor, Department of CSE</td>
+                            </tr>
+                            <tr>
+                                <td>Submission Date</td>
+                                <td>August 19, 2026</td>
+                            </tr>
+                            <tr>
+                                <td>GitHub Repository</td>
+                                <td><a href="https://github.com/Rupom090/CSE4204-8C-T07-Humanova" style="color: var(--primary); text-decoration: none;">github.com/Rupom090/CSE4204-8C-T07-Humanova</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 2: EXECUTIVE SUMMARY & ARCHITECTURE ================= -->
+        <div class="page page-break">
+            <h1>1. Executive Summary</h1>
+            <p>
+                By Week 09 of the <strong>CSE 4204 Mobile Computing Lab</strong> curriculum, <strong>Team 07</strong> has reached a critical integration milestone in the engineering of <strong>Humanova</strong>—an enterprise-grade, multi-tenant AI Trust Governance & Verification Platform. The primary focus of this milestone is transitioning from standalone, modular codebases into a unified, integrated software application.
+            </p>
+            <p>
+                The team has successfully established the foundational backend architecture in Laravel 12, modeled <strong>35+ relational database tables with 46 Eloquent models</strong> in MySQL 8, engineered token-based authentication with 7-tier Role-Based Access Control (RBAC), and developed a reactive, accessible frontend interface using React 19, TypeScript, Vite, and Tailwind CSS.
+            </p>
+
+            <div class="callout important">
+                <div class="callout-title">⚠️ Engineering Transparency: AI Integration Status</div>
+                In strict compliance with academic standards and honest milestone reporting, <strong>live AI model inference (OpenAI GPT-4o / Gemini 1.5 Pro) is not yet connected to live external APIs in this submission</strong>. The Python FastAPI microservice architecture, claim extraction schemas, and controller endpoints are fully scaffolded, structured, and validated locally with mock payloads in preparation for live API connection in Week 10.
+            </div>
+
+            <h1>2. Project Architecture & System Topology</h1>
+            <p>
+                Humanova follows a <strong>Hybrid SaaS & Distributed AI Middleware Architecture</strong>. The presentation layer communicates securely with the Laravel API gateway, which manages identity, authorization, persistence, and dispatches background verification tasks to specialized NLP microservices.
+            </p>
+
+            <div class="diagram-box">+-------------------------------------------------------------------------+
+|                       PRESENTATION LAYER (Frontend)                     |
+|  React 19 + TypeScript + Vite + Tailwind CSS + Zustand + Lucide Icons   |
++-------------------------------------------------------------------------+
+                                    |
+                            HTTPS / JSON REST
+                                    |
++-------------------------------------------------------------------------+
+|                      API GATEWAY & BACKEND (Laravel 12)                 |
+|  - Routing & Middleware (Sanctum Auth, RBAC, Rate Limiting, CORS)       |
+|  - Controllers: Auth, Scans, Verifications, Organizations, Providers    |
+|  - Domain Logic: Prompt Optimization, Confidence Aggregation, Auditing  |
++-------------------------------------------------------------------------+
+         |                                                 |
+         v                                                 v
++-----------------------+                         +-----------------------+
+|   DATA PERSISTENCE    |                         |  AI NLP MICROSERVICE  |
+|  - MySQL 8 Relational |                         |  - FastAPI (Python)   |
+|  - Redis Cache/Queue  |                         |  - spaCy / Embeddings |
+|  - 46 Eloquent Models |                         |  - Claim Extraction   |
++-----------------------+                         +-----------------------+</div>
+
+            <h2>2.1 Core Architectural Principles</h2>
+            <ul>
+                <li><strong>Strict Tenant Isolation:</strong> Every scan, API key, user group, and audit log is strictly partitioned by Organization ID.</li>
+                <li><strong>Stateless API Authentication:</strong> Secured via Laravel Sanctum Bearer tokens with cryptographic hashing.</li>
+                <li><strong>Decoupled Inference Microservice:</strong> Heavy natural language processing tasks are isolated in a Python FastAPI microservice to prevent blocking PHP gateway worker threads.</li>
+            </ul>
+        </div>
+
+        <!-- ================= PAGE 3: FEATURE CHECKLIST ================= -->
+        <div class="page page-break">
+            <h1>3. Feature Completion Checklist & Status</h1>
+            <p>
+                Below is the comprehensive feature tracking matrix evaluating all deliverables outlined in the approved Project Proposal, SRS, and System Design specifications.
+            </p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th style="width: 8%;">ID</th>
+                        <th style="width: 25%;">Feature Name</th>
+                        <th style="width: 14%;">Tier</th>
+                        <th style="width: 15%;">Status</th>
+                        <th style="width: 26%;">Reason / Technical Note</th>
+                        <th style="width: 12%;">Target Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>F-01</strong></td>
+                        <td>User Registration & Validation</td>
+                        <td>Auth / API</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Email uniqueness, password complexity, tenant workspace creation.</td>
+                        <td>Aug 12, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-02</strong></td>
+                        <td>User Login & Sanctum Token</td>
+                        <td>Auth / API</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Password hash verification and Bearer token issuance.</td>
+                        <td>Aug 12, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-03</strong></td>
+                        <td>User Logout & Revocation</td>
+                        <td>Auth / API</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Token deletion from <code>personal_access_tokens</code> table.</td>
+                        <td>Aug 13, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-04</strong></td>
+                        <td>Role-Based Access Control (RBAC)</td>
+                        <td>Security</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>7 distinct user roles and permission gates active.</td>
+                        <td>Aug 14, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-05</strong></td>
+                        <td>Multi-Tenant Org Isolation</td>
+                        <td>Database</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Data segregation by <code>organization_id</code> foreign keys.</td>
+                        <td>Aug 15, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-06</strong></td>
+                        <td>UI Design System & Tokens</td>
+                        <td>Frontend</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Atoms, buttons, badges, typography, dark theme tokens.</td>
+                        <td>Aug 10, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-07</strong></td>
+                        <td>Landing Page & Hero Canvas</td>
+                        <td>Frontend</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Futuristic grid canvas, stats counters, value props.</td>
+                        <td>Aug 08, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-08</strong></td>
+                        <td>Auth Views (Login/Register)</td>
+                        <td>Frontend</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Interactive forms, error alerts, responsive layout.</td>
+                        <td>Aug 11, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-09</strong></td>
+                        <td>User Analytics Dashboard</td>
+                        <td>Frontend</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Scan volume metrics, trust scores, recent logs table.</td>
+                        <td>Aug 13, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-10</strong></td>
+                        <td>Provider API Key Manager</td>
+                        <td>Frontend</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>UI for configuring OpenAI, Gemini, DeepSeek keys.</td>
+                        <td>Aug 14, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-11</strong></td>
+                        <td>Community Hallucination Feed</td>
+                        <td>Frontend</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Report cards, upvoting controls, category badges.</td>
+                        <td>Aug 15, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-12</strong></td>
+                        <td>User Profile & Reputation</td>
+                        <td>Frontend</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Reputation score gauge, badges, audit history.</td>
+                        <td>Aug 15, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-13</strong></td>
+                        <td>Super Admin Dashboard UI</td>
+                        <td>Frontend</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>System health telemetry, queue rates, verifiers.</td>
+                        <td>Aug 16, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-14</strong></td>
+                        <td>35+ Database Migrations</td>
+                        <td>Database</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Foreign keys, cascades, indexes, JSON payload columns.</td>
+                        <td>Aug 13, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-15</strong></td>
+                        <td>46 Eloquent ORM Models</td>
+                        <td>Backend</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Relationships, scopes, casts, and mutators defined.</td>
+                        <td>Aug 14, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-16</strong></td>
+                        <td>API Route Grouping (40+ routes)</td>
+                        <td>Gateway</td>
+                        <td><span class="badge badge-completed">Completed</span></td>
+                        <td>Versioned, throttled, authenticated endpoints.</td>
+                        <td>Aug 15, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-17</strong></td>
+                        <td>Auth State Sync (Zustand)</td>
+                        <td>Client State</td>
+                        <td><span class="badge badge-progress">In Progress</span></td>
+                        <td>Hydration working; auto-refresh token logic pending.</td>
+                        <td>Aug 22, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-18</strong></td>
+                        <td>Live Scan Submission Bridge</td>
+                        <td>Integration</td>
+                        <td><span class="badge badge-progress">In Progress</span></td>
+                        <td>Form captures input; queue worker response wiring.</td>
+                        <td>Aug 23, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-19</strong></td>
+                        <td>Provider Key AES Encryption</td>
+                        <td>Security</td>
+                        <td><span class="badge badge-progress">In Progress</span></td>
+                        <td>CRUD endpoints active; cryptographic hook in test.</td>
+                        <td>Aug 22, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-20</strong></td>
+                        <td>FastAPI Microservice Core</td>
+                        <td>AI Pipeline</td>
+                        <td><span class="badge badge-progress">In Progress</span></td>
+                        <td>Endpoints scaffolded; awaiting live transformer models.</td>
+                        <td>Aug 24, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-21</strong></td>
+                        <td>Claim Extraction Logic</td>
+                        <td>AI Pipeline</td>
+                        <td><span class="badge badge-progress">In Progress</span></td>
+                        <td>Mock sentence parser active; spaCy NER pending.</td>
+                        <td>Aug 25, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-22</strong></td>
+                        <td>Live LLM Provider Orchestrator</td>
+                        <td>AI Live API</td>
+                        <td><span class="badge badge-notstarted">Not Started</span></td>
+                        <td>Awaiting external API key quota configuration.</td>
+                        <td>Aug 29, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-23</strong></td>
+                        <td>Web Evidence Retrieval Engine</td>
+                        <td>AI Live API</td>
+                        <td><span class="badge badge-notstarted">Not Started</span></td>
+                        <td>Awaiting Serper/Tavily Search API key provisioning.</td>
+                        <td>Aug 30, 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>F-24</strong></td>
+                        <td>Automated PDF Report Export</td>
+                        <td>Reporting</td>
+                        <td><span class="badge badge-notstarted">Not Started</span></td>
+                        <td>Scheduled for end-of-project export milestone.</td>
+                        <td>Sep 02, 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ================= PAGE 4: INTEGRATION & AUTHENTICATION ================= -->
+        <div class="page page-break">
+            <h1>4. Frontend–Backend Integration Status</h1>
+            <p>
+                Connecting frontend visual components to backend RESTful endpoints was a primary objective of Week 09. Temporary hardcoded data structures within React have been moved to a unified API client service layer (<code>src/services/api.ts</code>).
+            </p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Domain</th>
+                        <th>Frontend Component</th>
+                        <th>API Endpoint</th>
+                        <th>Method</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Auth</strong></td>
+                        <td><code>Register.tsx</code></td>
+                        <td><code>/api/v1/auth/register</code></td>
+                        <td><code>POST</code></td>
+                        <td><span class="badge badge-completed">Connected</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Auth</strong></td>
+                        <td><code>Login.tsx</code></td>
+                        <td><code>/api/v1/auth/login</code></td>
+                        <td><code>POST</code></td>
+                        <td><span class="badge badge-completed">Connected</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Auth</strong></td>
+                        <td><code>Navbar.tsx</code></td>
+                        <td><code>/api/v1/auth/logout</code></td>
+                        <td><code>POST</code></td>
+                        <td><span class="badge badge-completed">Connected</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Auth</strong></td>
+                        <td><code>authStore.ts</code></td>
+                        <td><code>/api/v1/auth/me</code></td>
+                        <td><code>GET</code></td>
+                        <td><span class="badge badge-completed">Connected</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Organization</strong></td>
+                        <td><code>OrganizationView.tsx</code></td>
+                        <td><code>/api/v1/organizations</code></td>
+                        <td><code>GET</code></td>
+                        <td><span class="badge badge-completed">Connected</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>API Keys</strong></td>
+                        <td><code>ApiKeysView.tsx</code></td>
+                        <td><code>/api/v1/provider-keys</code></td>
+                        <td><code>GET/POST</code></td>
+                        <td><span class="badge badge-progress">Active Testing</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scans</strong></td>
+                        <td><code>VerificationWorkspace.tsx</code></td>
+                        <td><code>/api/v1/scans</code></td>
+                        <td><code>POST</code></td>
+                        <td><span class="badge badge-progress">Mock Response</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reports</strong></td>
+                        <td><code>CommunityFeed.tsx</code></td>
+                        <td><code>/api/v1/reports</code></td>
+                        <td><code>GET/POST</code></td>
+                        <td><span class="badge badge-progress">Active Testing</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Analytics</strong></td>
+                        <td><code>DashboardHome.tsx</code></td>
+                        <td><code>/api/v1/analytics/dashboard</code></td>
+                        <td><code>GET</code></td>
+                        <td><span class="badge badge-progress">Wiring Charts</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h1>5. User Authentication, Session & RBAC</h1>
+            <p>
+                The authentication layer is fully operational and secured using Laravel Sanctum. The flow enforces cryptographic password validation and issues scoped Bearer tokens stored in <code>localStorage</code>.
+            </p>
+
+            <div class="diagram-box">+-----------+       +-------------------+       +--------------------+       +----------------------+
+|  Client   | ----> | POST /auth/login  | ----> | Laravel Sanctum    | ----> | MySQL `users` &      |
+| Form View | <---- | 200 OK + Bearer   | <---- | Password Check &   | <---- | `roles` Tables       |
++-----------+       | Token + User Dict |       | Token Generation   |       +----------------------+
+      |             +-------------------+       +--------------------+
+      v
++---------------------------------------------------------------------------------------------------+
+|  Client Storage: LocalStorage & Zustand Store                                                     |
+|  Protected Route Guard: &lt;ProtectedRoute allowedRoles={['admin', 'researcher', 'user']} /&gt;         |
++---------------------------------------------------------------------------------------------------+</div>
+
+            <h2>5.1 Role-Based Access Control (RBAC) Matrix</h2>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Role Name</th>
+                        <th>Level</th>
+                        <th>Run Scans</th>
+                        <th>Submit Reports</th>
+                        <th>Vote</th>
+                        <th>Moderation Queue</th>
+                        <th>Manage Keys</th>
+                        <th>Super Admin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Guest</strong></td><td>0</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+                    <tr><td><strong>User</strong></td><td>1</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+                    <tr><td><strong>Researcher</strong></td><td>2</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+                    <tr><td><strong>Trusted Verifier</strong></td><td>3</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
+                    <tr><td><strong>Moderator</strong></td><td>4</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
+                    <tr><td><strong>Organization Admin</strong></td><td>5</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>✅</td><td>❌</td></tr>
+                    <tr><td><strong>Super Admin</strong></td><td>6</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ================= PAGE 5: AI STATUS & WORKFLOWS ================= -->
+        <div class="page page-break">
+            <h1>6. AI Integration Status & Staging Architecture</h1>
+            <p>
+                Humanova's AI verification engine is engineered as a dedicated <strong>Python FastAPI microservice</strong> to handle claim extraction, similarity analysis, and contradiction detection independently from the core PHP backend.
+            </p>
+
+            <div class="callout warning">
+                <div class="callout-title">Technical Roadmap: Why Live AI is Staged for Week 10</div>
+                During Week 09, our primary focus was stabilizing the database, authentication, and REST API foundation. Connecting to live LLM APIs (OpenAI, Gemini) at this stage would incur unnecessary token costs and rate-limiting issues during rapid UI iteration. The microservice endpoints currently return deterministic test schemas, ensuring seamless live integration in Week 10.
+            </div>
+
+            <div class="diagram-box">+─────────────────────────────────────────────────────────────────────────────+
+|                  FASTAPI PYTHON AI MICROSERVICE (Port 8001)                 |
+|                                                                             |
+|  1. POST /extract-claims        ──> Splits input into atomic testable claims|
+|  2. POST /retrieve-evidence     ──> Queries indexed web evidence (Staged)   |
+|  3. POST /analyze-similarity    ──> Semantic alignment scoring (Staged)     |
+|  4. POST /detect-contradiction  ──> Natural Language Inference (NLI) (Staged)|
++─────────────────────────────────────────────────────────────────────────────+
+         |
+         v  (JSON Output)
+ [Laravel Confidence Engine] ──> Calculates Weighted Trust Score (0-100%)
+         |
+         v
+ [React UI Presentation]     ──> Visual Claim Highlighting & Source Overlays</div>
+
+            <h1>7. Major User Workflows</h1>
+
+            <h2>7.1 Workflow A: User Authentication & Dashboard Access</h2>
+            <p>
+                <strong>Path:</strong> <code>/</code> (Landing) &rarr; <code>/login</code> &rarr; <code>POST /api/v1/auth/login</code> &rarr; Sanctum Token Stored &rarr; <code>/dashboard</code>.
+                <br>The user logs in, receives a Bearer token, hydates client state, and accesses personalized verification metrics.
+            </p>
+
+            <h2>7.2 Workflow B: Content Verification & Fact Auditing (Core Path)</h2>
+            <p>
+                <strong>Path:</strong> <code>/verification</code> &rarr; Submit Text &rarr; <code>POST /api/v1/scans</code> &rarr; NLP Claim Extraction &rarr; Scoring Engine &rarr; Highlighted Overlay.
+                <br>The user submits AI-generated text; the system decomposes the text into individual claims, calculates trust scores, and displays verified vs. suspicious segments.
+            </p>
+
+            <h2>7.3 Workflow C: Community Hallucination Reporting</h2>
+            <p>
+                <strong>Path:</strong> <code>/community</code> &rarr; "Submit Report" Modal &rarr; <code>POST /api/v1/reports</code> &rarr; Moderation Queue &rarr; Verified Knowledge Base.
+                <br>Users crowdsource hallucination findings, which verifiers review to update the shared intelligence dataset.
+            </p>
+
+            <h2>7.4 Workflow D: Multi-Tenant Provider API Key Governance</h2>
+            <p>
+                <strong>Path:</strong> <code>/settings/api-keys</code> &rarr; Enter API Key &rarr; AES-256 Encryption &rarr; <code>user_api_keys</code> Table &rarr; Shared Workspace Access.
+                <br>Organization admins pool API keys safely without exposing raw credentials to team members.
+            </p>
+        </div>
+
+        <!-- ================= PAGE 6: UI/UX REFINEMENTS & ERROR HANDLING ================= -->
+        <div class="page page-break">
+            <h1>8. UI/UX Refinements & Design System</h1>
+            <p>
+                Building on the approved Week 05 design mockups, the user interface was refined in Week 09 to ensure accessibility, responsiveness, and consistent visual hierarchy.
+            </p>
+
+            <ul>
+                <li><strong>Dynamic Claim Highlighting:</strong> Color-coded overlays visually categorize text into 🟢 <em>Verified</em>, 🟡 <em>Uncertain</em>, and 🔴 <em>Hallucination</em>.</li>
+                <li><strong>Responsive Multi-Device Scaling:</strong> Fluid CSS grid layouts adapt seamlessly from mobile viewports (375px) to ultra-wide displays (1920px).</li>
+                <li><strong>Shimmer Skeletons:</strong> Added pulse animations during asynchronous data fetches to eliminate layout shifts.</li>
+                <li><strong>Accessible Form Feedback:</strong> Live field validation alerts and disabled button states during network requests prevent accidental duplicate submissions.</li>
+            </ul>
+
+            <h1>9. Error Handling & Fault Tolerance</h1>
+            <p>
+                The platform is designed to handle edge cases gracefully, providing clear user feedback rather than raw errors or crashes.
+            </p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Detection Point</th>
+                        <th>HTTP Status</th>
+                        <th>User-Facing Feedback Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Invalid Input</strong></td>
+                        <td>Client Form Validation</td>
+                        <td>N/A (Client)</td>
+                        <td>"Please enter a valid email and a password with at least 8 characters."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Expired Session</strong></td>
+                        <td>Sanctum Middleware</td>
+                        <td><code>401 Unauthorized</code></td>
+                        <td>"Your session has expired. Redirecting to login..."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Forbidden Role</strong></td>
+                        <td>RBAC Route Gate</td>
+                        <td><code>403 Forbidden</code></td>
+                        <td>"Access Denied: You do not have permission to view the Moderation Queue."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rate Limit Exceeded</strong></td>
+                        <td>API Throttle Guard</td>
+                        <td><code>429 Too Many Req</code></td>
+                        <td>"Rate limit reached. Please wait 60 seconds before scanning again."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Database Offline</strong></td>
+                        <td>Backend Core Handler</td>
+                        <td><code>503 Service Unavail</code></td>
+                        <td>"The service is temporarily experiencing database connectivity issues."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NLP Microservice Timeout</strong></td>
+                        <td>Gateway Guzzle Client</td>
+                        <td><code>504 Gateway Timeout</code></td>
+                        <td>"Verification engine timed out. Your scan has been queued for background processing."</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h1>10. Scope Review & Architectural Changes</h1>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Original Plan</th>
+                        <th>Current Implementation</th>
+                        <th>Reason for Deviation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Backend Core</strong></td>
+                        <td>Monolithic Python Flask</td>
+                        <td><strong>Laravel 12 API Gateway + FastAPI</strong></td>
+                        <td>Laravel provides superior ORM, RBAC, and rate limiting; FastAPI excels at NLP.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Database</strong></td>
+                        <td>12 Flat Tables</td>
+                        <td><strong>35+ Tables (46 Models)</strong></td>
+                        <td>Expanded to support multi-tenancy, audit logs, and claim-level evidence trees.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Frontend</strong></td>
+                        <td>Standard React + Webpack</td>
+                        <td><strong>React 19 + TypeScript + Vite + Tailwind</strong></td>
+                        <td>Vastly superior build performance, strict type safety, and modern styling.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tenancy</strong></td>
+                        <td>Single User Accounts</td>
+                        <td><strong>Multi-Tenant Org Workspaces</strong></td>
+                        <td>Enables real-world deployment for university labs and enterprise research teams.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ================= PAGE 7: CONTRIBUTIONS & SCREENSHOTS ================= -->
+        <div class="page page-break">
+            <h1>11. Mid-Project Review & Team Contributions</h1>
+            <p>
+                Every team member has actively developed their assigned system modules according to the project timeline.
+            </p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Student Name & ID</th>
+                        <th>Assigned Role</th>
+                        <th>Key Deliverables Completed</th>
+                        <th>Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>MD Robayet Hassan Rupom</strong><br><code>11220320979</code></td>
+                        <td>Frontend Architect & Team Leader</td>
+                        <td>
+                            • Built 10+ core responsive React 19 views.<br>
+                            • Configured React Router v7 and client route guards.<br>
+                            • Developed Zustand stores for auth and scan state.<br>
+                            • Designed claim highlighting overlays and design tokens.
+                        </td>
+                        <td><strong>92%</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bushra Monzur Moumi</strong><br><code>11220321048</code></td>
+                        <td>AI Integration Lead</td>
+                        <td>
+                            • Designed Python FastAPI microservice architecture.<br>
+                            • Formulated claim extraction and NLI contradiction models.<br>
+                            • Designed prompt enhancement logic and variation metrics.<br>
+                            • Built evaluation test fixtures for Week 10 LLM integration.
+                        </td>
+                        <td><strong>85%</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aqib Jawwad Nahin</strong><br><code>11220320969</code></td>
+                        <td>Backend Architect & Database Lead</td>
+                        <td>
+                            • Authored 35+ MySQL database migrations and 46 models.<br>
+                            • Implemented Laravel Sanctum token auth & password hashing.<br>
+                            • Configured 7-tier RBAC and multi-tenant organization scopes.<br>
+                            • Exposed 40+ RESTful API endpoints with throttling.
+                        </td>
+                        <td><strong>95%</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h1>12. System Interface Screenshots & Demonstrations</h1>
+            <p>
+                The following verified screen captures demonstrate the working user interfaces and functional modules of the Humanova platform.
+            </p>
+
+            <div class="screenshot-card">
+                <img src="ui-screens/landing-page.png" alt="Landing Page" class="screenshot-img">
+                <div class="screenshot-caption">Figure 12.1: Humanova Public Landing Page & Platform Overview</div>
+                <div class="screenshot-meta">
+                    <strong>File:</strong> <code>src/pages/Home.tsx</code> | <strong>Features:</strong> Animated Hero Canvas, Stats Counter, Value Proposition, Navigation CTA.
+                </div>
+            </div>
+
+            <div class="screenshot-card">
+                <img src="ui-screens/register-page.png" alt="Registration Screen" class="screenshot-img">
+                <div class="screenshot-caption">Figure 12.2: User Registration & Workspace Creation Interface</div>
+                <div class="screenshot-meta">
+                    <strong>File:</strong> <code>src/pages/auth/Register.tsx</code> | <strong>Endpoint:</strong> <code>POST /api/v1/auth/register</code> | <strong>Features:</strong> Live validation, password strength meter.
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 8: MORE SCREENSHOTS ================= -->
+        <div class="page page-break">
+            <div class="screenshot-card">
+                <img src="ui-screens/login-page.png" alt="Login Screen" class="screenshot-img">
+                <div class="screenshot-caption">Figure 12.3: User Login & Session Token Acquisition Portal</div>
+                <div class="screenshot-meta">
+                    <strong>File:</strong> <code>src/pages/auth/Login.tsx</code> | <strong>Endpoint:</strong> <code>POST /api/v1/auth/login</code> | <strong>Features:</strong> Sanctum Bearer token generation, error alert banners.
+                </div>
+            </div>
+
+            <div class="screenshot-card">
+                <img src="ui-screens/dashboard.png" alt="Analytics Dashboard" class="screenshot-img">
+                <div class="screenshot-caption">Figure 12.4: Central Analytics & Verification Telemetry Dashboard</div>
+                <div class="screenshot-meta">
+                    <strong>File:</strong> <code>src/pages/dashboard/DashboardHome.tsx</code> | <strong>Features:</strong> Scan counters, token savings metrics, recent verification audit table.
+                </div>
+            </div>
+
+            <div class="screenshot-card">
+                <img src="ui-screens/verification-page.png" alt="Verification Workspace" class="screenshot-img">
+                <div class="screenshot-caption">Figure 12.5: AI Verification Workspace & Fact Extraction Engine</div>
+                <div class="screenshot-meta">
+                    <strong>File:</strong> <code>src/pages/verification/VerificationWorkspace.tsx</code> | <strong>Features:</strong> Color-coded claim overlays, provider selectors, confidence breakdown.
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 9: REMAINING SCREENSHOTS ================= -->
+        <div class="page page-break">
+            <div class="screenshot-card">
+                <img src="ui-screens/report-page.png" alt="Community Hallucination Reports" class="screenshot-img">
+                <div class="screenshot-caption">Figure 12.6: Community Hallucination Feed & Evidence Inspection</div>
+                <div class="screenshot-meta">
+                    <strong>File:</strong> <code>src/pages/community/CommunityFeed.tsx</code> | <strong>Features:</strong> Peer verification feed, upvoting controls, category badges, report filters.
+                </div>
+            </div>
+
+            <div class="screenshot-card">
+                <img src="ui-screens/api-key-page.png" alt="API Key Management" class="screenshot-img">
+                <div class="screenshot-caption">Figure 12.7: Multi-Provider API Key Governance Interface</div>
+                <div class="screenshot-meta">
+                    <strong>File:</strong> <code>src/pages/settings/ApiKeysView.tsx</code> | <strong>Features:</strong> Encrypted key storage, model allowance scopes, monthly token quotas.
+                </div>
+            </div>
+
+            <div class="screenshot-card">
+                <img src="ui-screens/organization-page.png" alt="Organization Management" class="screenshot-img">
+                <div class="screenshot-caption">Figure 12.8: Multi-Tenant Workspace & Team Member Management</div>
+                <div class="screenshot-meta">
+                    <strong>File:</strong> <code>src/pages/settings/OrganizationView.tsx</code> | <strong>Features:</strong> Workspace directory, member invitations, role assignments.
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PAGE 10: ADMIN, GITHUB & TESTING ================= -->
+        <div class="page page-break">
+            <div class="screenshot-card">
+                <img src="ui-screens/admin-dashboard.png" alt="Admin Dashboard" class="screenshot-img">
+                <div class="screenshot-caption">Figure 12.9: Super Admin Telemetry & System Health Dashboard</div>
+                <div class="screenshot-meta">
+                    <strong>File:</strong> <code>src/pages/dashboard/AdminDashboard.tsx</code> | <strong>Features:</strong> Queue latency charts, active verifiers, unresolved moderation queue.
+                </div>
+            </div>
+
+            <h1>13. GitHub Repository Hygiene & Commit Activity</h1>
+            <p>
+                The project repository is actively maintained with structured git practices, meaningful commit messages, and secret isolation.
+            </p>
+
+            <pre><code>* 9558b69 (HEAD -> main, origin/main) feat: complete Phase 1-10 backend architecture, RBAC, and security hardening
+* 0837210 feat: Add backend service implementation, docker configurations, and update main repository documentation
+* 30d5f0e feat: add application source code and public assets
+* d429ce5 feat: add initial UI mockup components and layouts
+* 267cf45 docs: update README folder structure and remove Instructions.json
+* 9d0e01b docs: rewrite README.md and LICENSE to production-grade quality
+* ec197b7 chore: initial repository commit and project scaffolding</code></pre>
+
+            <h1>14. Testing, QA & Week 10 Preparation</h1>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Test ID</th>
+                        <th>Scope</th>
+                        <th>Procedure</th>
+                        <th>Expected Result</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>TC-AUTH-01</strong></td>
+                        <td>Auth</td>
+                        <td>Register with valid details.</td>
+                        <td>User inserted in DB; Sanctum token returned.</td>
+                        <td><span class="badge badge-completed">PASS</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC-AUTH-02</strong></td>
+                        <td>Auth</td>
+                        <td>Register with duplicate email.</td>
+                        <td>HTTP 422 Unprocessable Entity error.</td>
+                        <td><span class="badge badge-completed">PASS</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC-AUTH-03</strong></td>
+                        <td>Auth</td>
+                        <td>Login with invalid password.</td>
+                        <td>HTTP 401 Unauthorized returned.</td>
+                        <td><span class="badge badge-completed">PASS</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC-RBAC-01</strong></td>
+                        <td>Security</td>
+                        <td>Standard user accesses <code>/admin</code>.</td>
+                        <td>HTTP 403 Forbidden; view blocked.</td>
+                        <td><span class="badge badge-completed">PASS</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>TC-UI-01</strong></td>
+                        <td>UI/UX</td>
+                        <td>Resize viewport to 375px width.</td>
+                        <td>Mobile navigation drawer activates smoothly.</td>
+                        <td><span class="badge badge-completed">PASS</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h1>15. Conclusion</h1>
+            <p>
+                The Week 09 milestone marks substantial progress for <strong>Humanova</strong>. The foundational backend, relational database architecture, authentication security, and frontend user interface are fully established. With the AI microservice endpoints structured and ready, the team is fully prepared for Week 10 live model integration and formal testing.
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>

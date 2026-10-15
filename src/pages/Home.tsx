@@ -745,7 +745,6 @@ export const Home: React.FC = () => {
           <SkewCards />
         </section>
       </div>
-
       {/* Footer */}
       <footer className="relative z-10 max-w-7xl mx-auto px-6 py-12 mt-24 border-t border-border-subtle/30 bg-bg-primary/20 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-text-secondary">
         <div>© 2026 Humanova Trust Networks. Governance verified.</div>
